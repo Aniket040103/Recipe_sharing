@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'recipe_sharing.urls'
+ROOT_URLCONF = 'hotel_recepies.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'recipe_sharing.wsgi.application'
+WSGI_APPLICATION = 'hotel_recepies.wsgi.application'
 
 
 # Database
