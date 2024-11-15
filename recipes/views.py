@@ -14,6 +14,7 @@ def recipe_create(request):
             return redirect('recipe_list')
     else:
         form = RecipeForm()
+
     return render(request, 'recipe_create.html', {'form': form})
 
 def recipe_update(request, pk):
