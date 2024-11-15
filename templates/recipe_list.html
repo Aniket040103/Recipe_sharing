@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">All Recipes</h1>
+
+    <!-- Button to add a new recipe -->
+    <a href="{% url 'recipe_create' %}" class="btn btn-success mb-4">Add New Recipe</a>
+
+    <div class="row">
+        {% for recipe in recipes %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if recipe.image %}
+                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" width="200">
+                {% else %}
+                <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="No Image Available">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <p class="card-text">{{ recipe.description }}</p>
+
+                    <!-- Ingredients List -->
+                    <h6>Ingredients</h6>
+                    <ul>
+                        {% for ingredient in recipe.ingredients.splitlines %}
+                        <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Instructions -->
+                    <h6>Instructions</h6>
+                    <p>{{ recipe.instructions }}</p>
+
+                    <!-- Edit and Delete Buttons -->
+                    <a href="{% url 'recipe_update' recipe.pk %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'recipe_delete' recipe.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No recipes available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html
